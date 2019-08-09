@@ -1,5 +1,5 @@
 import React from "react";
-import { render, fireEvent } from "@testing-library/react";
+import { render, fireEvent, waitForElement } from "@testing-library/react";
 import "@testing-library/react/cleanup-after-each";
 import Recipes from './Recipes.js';
 
@@ -14,18 +14,32 @@ describe("<Recipes />", () => {
     fireEvent.click(showButton);
     expect(clicked).toBe(true);
   });
-  it("props are passed and working", () => {
-    const recipe = render(
-      <Recipes
+  it("props are passed and working", async () => {
+    // const recipe = render(
+    //   <Recipes
+    //     showRecipeData={true}
+    //     dataBtn={() => true}
+    //     recipeData={[
+    //       {
+    //         name: "sample",
+    //         course: "course",
+    //       }
+    //     ]}
+    //   />
+    // );
+    // recipe.getByText(/^sample$/i);
+    const { getByText } = render(
+      <Recipes 
         showRecipeData={true}
+        dataBtn={() => true}
         recipeData={[
           {
-            name: "sample",
-            course: "course",
+            name: 'sample',
+            course: 'course'
           }
         ]}
       />
     );
-    recipe.getByText(/^sample$/i);
+    await waitForElement(() => getByText(/sample/i));
   });
 });

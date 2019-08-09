@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Form, Field, withFormik } from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios';
+import { Route, withRouter, Link, NavLink } from 'react-router-dom';
 
 
 const RegistrationForm = ({ errors, touched, values, status }) => {
@@ -38,7 +39,16 @@ const RegistrationForm = ({ errors, touched, values, status }) => {
           {touched.password && errors.password && (
             <p className='error'>{errors.password}</p>
           )}
-          <button type='submit'>Submit</button>
+          {/* <button type='submit'>Submit</button> */}
+          <Link to='/login'>
+            <button type='submit'>Submit</button>
+          </Link>
+          {/* <NavLink to='/login'>
+            Login
+          </NavLink>
+          <NavLink to='/users'>Users</NavLink>
+          <button onClick='{this.logout}'>Logout</button> */}
+
         </Form>
         
         {/* {users && users.map((recipe, index) => (
@@ -81,8 +91,9 @@ const FormikRegistrationForm = withFormik({
       axios
         .post(`http://localhost:5000/api/register`, values)
         .then(response => {
-          // console.log('res in axios post', response.data)
+          console.log('res in axios post', response.data)
           setStatus(response.data);
+          localStorage.setItem('jwt', response.data.token);
           resetForm();
         })
         .catch(error =>
