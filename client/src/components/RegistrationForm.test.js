@@ -7,11 +7,11 @@ describe('<RegistrationForm />', () => {
   it('renders without crashing', () => {
     render(<RegistrationForm />);
   })
-  it('displays username input', () => {
-    const { getByTestId } = render(<RegistrationForm />);
-    const username = getByTestId('username');
-    expect(username).toBeVisible();
-  })
+  // it('displays username input', () => {
+  //   const { getByTestId } = render(<RegistrationForm />);
+  //   const username = getByTestId('username');
+  //   expect(username).toBeVisible();
+  // })
   // it('displays courses upon submit', () => {
   //   const { getByText } = render(<RegistrationForm />);
   //   const submitButton = getByText(/submit/i);

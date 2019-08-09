@@ -6,49 +6,49 @@ import axios from 'axios';
 
 const RegistrationForm = ({ errors, touched, values, status }) => {
 
-  const [recipes, setRecipes] = useState([]);
+  const [users, setUsers] = useState([]);
 
   useEffect(() => {
     if (status) {
       // console.log('status', status)
-      setRecipes([...recipes, status]);
-      setRecipes([...status])
-      // console.log('recipes', recipes)
+      setUsers([...users, status]);
+      // console.log('users', users)
     }
   }, [status]);
 
-  return (
-    <div className='registration-form'>
-      <h1>Registration Form</h1>
-      <Form>
-        <Field
-          type='text'
-          name='username'
-          placeholder='username'
-          className='form-field'
-        />
-        {touched.username && errors.username && (
-          <p className='error'>{errors.username}</p>
-        )}
-        <Field
-          type='password'
-          name='password'
-          placeholder='Password'
-          className='form-field'
-        />
-        {touched.password && errors.password && (
-          <p className='error'>{errors.password}</p>
-        )}
-        <button type='submit'>Submit</button>
-      </Form>
-
-      {recipes && recipes.map((recipe, index) => (
-        <div key={index} className='recipe'>
-          <h3 >{recipe.course} course: {recipe.name}</h3>
-        </div>
-      ))}
-    </div>
-  );
+    return (
+      <div className='registration-form'>
+        <h1>Registration Form</h1>
+        <Form>
+          <Field
+            type='text'
+            name='username'
+            placeholder='username'
+            className='form-field'
+          />
+          {touched.username && errors.username && (
+            <p className='error'>{errors.username}</p>
+          )}
+          <Field
+            type='password'
+            name='password'
+            placeholder='Password'
+            className='form-field'
+          />
+          {touched.password && errors.password && (
+            <p className='error'>{errors.password}</p>
+          )}
+          <button type='submit'>Submit</button>
+        </Form>
+        
+        {/* {users && users.map((recipe, index) => (
+          <div key={index} className='recipe'>
+            <h3 >{recipe.course} course: {recipe.name}</h3>
+          </div>
+        ))} */}
+      </div>
+    );
+  
 };
 
 
@@ -72,7 +72,7 @@ const FormikRegistrationForm = withFormik({
   }),
 
   handleSubmit(values, { setStatus, setErrors, resetForm }) {
-    // const email = this.state.email;
+    // const email = state.email;
     // const filterEmail = email.filter(x => x === email);
     if (values.username === "pdadlani") {
       setErrors({ username: "That username is already taken" });
@@ -82,21 +82,21 @@ const FormikRegistrationForm = withFormik({
         .post(`http://localhost:5000/api/register`, values)
         .then(response => {
           // console.log('res in axios post', response.data)
-          // setStatus(response.data);
+          setStatus(response.data);
           resetForm();
         })
         .catch(error =>
           console.log("Error in handleSubmit axios.post call", error.response)
         );
-      axios
-        .get(`http://localhost:5000/api/restricted/data`)
-        .then(response => {
-          console.log('response in axios.get', response);
-          setStatus(response.data)
-        })
-        .catch(error => {
-          console.log("Error in handleSubmit axios.get call", error);
-        });
+      // axios
+      //   .get(`http://localhost:5000/api/restricted/data`)
+      //   .then(response => {
+      //     console.log('response in axios.get', response);
+      //     setStatus(response.data)
+      //   })
+      //   .catch(error => {
+      //     console.log("Error in handleSubmit axios.get call", error);
+      //   });
     }
   }
 })(RegistrationForm);
