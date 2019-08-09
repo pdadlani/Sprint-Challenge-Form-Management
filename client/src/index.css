@@ -1,0 +1,43 @@
+body {
+  margin: 0;
+  font-family: Georgia, 'Times New Roman', Times, serif; 
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+.registration-form {
+  background-color: white;
+}
+
+.registration-form h1 {
+  background-color: rgb(6, 133, 187);
+  color: white;
+  padding: 15px;
+}
+
+.form-field {
+  padding: 10px;
+  color: rgb(6, 133, 187);
+  margin: 10px;
+}
+
+button {
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  color: white;
+  background-color: rgb(148, 86, 210);
+  padding: 10px;
+}
+
+.error {
+  color: rebeccapurple;
+  border: 1px solid rebeccapurple;
+  padding: 10px;
+  max-width: 80vw;
+  margin: 10px auto;
+}
+
